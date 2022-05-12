@@ -9,3 +9,4 @@ theme:
     scheme: grey
 nav:
   - Home: index.md
+  - Crdential Dumping: Credential_Dumping.md
