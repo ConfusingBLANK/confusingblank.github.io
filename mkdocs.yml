@@ -8,4 +8,4 @@ theme:
 nav:
   - Home: index.md
   - Crdential Dumping: Credential_Dumping.md
-  - Malware Dev: Malware_Dev/Payload_Testing.md
+  - Malware Dev: docs/Malware_Dev/Payload_Testing.md
