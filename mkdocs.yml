@@ -5,3 +5,5 @@ repo_name: confusingblank/confusingblank.github.io
 repo_url: https://github.com/confusingblank/confusingblank.github.io
 theme:
   name: material
+nav:
+  - Home: index.md
