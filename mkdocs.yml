@@ -1,5 +1,5 @@
 site_name: Zenitram Wiki
-site_url: https://squidfunk.github.io/confusingblank.github.io/
+site_url: https://squidfunk.github.io/wiki/
 theme:
   name: material
   palette:
