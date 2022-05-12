@@ -8,4 +8,6 @@ theme:
 nav:
   - Home: index.md
   - Crdential Dumping: Credential_Dumping.md
-  - Malware Dev: malwaredev/payload-testing.md
+  - Malware Dev:
+    - Payload Testing Snippets: malwaredev/payload-testing.md
+    - PE Format Essentials: malwaredev/pe-file-format.md
