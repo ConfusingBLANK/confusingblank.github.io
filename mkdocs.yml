@@ -1,4 +1,7 @@
 site_name: My Docs
 site_url: https://confusingblank.github.io/confusingblank.github.io/
+# Repository
+repo_name: confusingblank/confusingblank.github.io
+repo_url: https://github.com/confusingblank/confusingblank.github.io
 theme:
   name: material
