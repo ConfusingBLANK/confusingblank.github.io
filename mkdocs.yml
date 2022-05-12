@@ -6,6 +6,6 @@ repo_url: https://github.com/confusingblank/confusingblank.github.io
 theme:
   name: material
   palette:
-    scheme: default
+    scheme: grey
 nav:
   - Home: index.md
