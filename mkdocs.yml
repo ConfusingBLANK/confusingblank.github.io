@@ -6,7 +6,8 @@ repo_url: https://github.com/confusingblank/confusingblank.github.io
 theme:
   name: material
   palette:
-    scheme: grey
+    scheme: slate
+    primary: grey
 nav:
   - Home: index.md
   - Crdential Dumping: Credential_Dumping.md
