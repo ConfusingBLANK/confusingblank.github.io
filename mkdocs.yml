@@ -7,7 +7,9 @@ theme:
     primary: grey
 nav:
   - Home: index.md
-  - Crdential Dumping: Credential_Dumping.md
+  - Windows Exploitation:
+    - Crdential Dumping: windowsexploitation/credential-dumping.md
+    - Lateral Movement: windowsexploitation/lateral-movement.md
   - Malware Dev:
     - Payload Testing Snippets: malwaredev/payload-testing.md
     - PE Format Essentials: malwaredev/pe-file-format.md
