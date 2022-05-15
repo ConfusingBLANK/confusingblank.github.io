@@ -1,7 +1,6 @@
 site_name: Security Wiki
 site_url: https://confusingblank.github.io/
 theme:
-  logo: assets/logo.png
   name: material
   palette:
     scheme: slate
@@ -11,6 +10,7 @@ nav:
   - Windows Exploitation:
     - Crdential Dumping: windowsexploitation/credential-dumping.md
     - Lateral Movement: windowsexploitation/lateral-movement.md
+    - Privilege Escalation: windowsexploitation/privilege-escalation.md
   - Malware Dev:
     - Payload Testing Snippets: malwaredev/payload-testing.md
     - PE Format Essentials: malwaredev/pe-file-format.md
