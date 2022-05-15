@@ -1,6 +1,7 @@
 site_name: Security Wiki
 site_url: https://confusingblank.github.io/
 theme:
+  logo: assets/logo.png
   name: material
   palette:
     scheme: slate
