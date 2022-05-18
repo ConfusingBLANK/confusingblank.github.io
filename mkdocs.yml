@@ -10,6 +10,7 @@ nav:
   - Windows Exploitation:
     - Crdential Dumping: windowsexploitation/credential-dumping.md
     - Lateral Movement: windowsexploitation/lateral-movement.md
+    - Persistence: windowsexploitation/persistence.md
     - Privilege Escalation: windowsexploitation/privilege-escalation.md
   - Malware Dev:
     - Payload Testing Snippets: malwaredev/payload-testing.md
