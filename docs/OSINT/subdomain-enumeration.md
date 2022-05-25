@@ -2,11 +2,6 @@
 
 ## Amass
 
-Basic subdomain enumeration method (`-d`):
-```
-amass enum -d <domain>
-```
-
 Reverse Whois method tries to find other domains with similar whois records(`-whois`):
 ```
 amass intel -d <domain> -whois
@@ -30,6 +25,11 @@ amass intel -active -asn <asn-number>
 Putting it all together:
 ```
 amass intel -asn <asn-number> -whois -d <domain>
+```
+
+Basic subdomain enumeration method (`-d`):
+```
+amass enum -d <domain>
 ```
 
 ## References
