@@ -55,3 +55,4 @@ In my experience this generates a lot of false positives and requires the use of
 ## References
 - [https://hakluke.medium.com/haklukes-guide-to-amass-how-to-use-amass-more-effectively-for-bug-bounties-7c37570b83f7](https://hakluke.medium.com/haklukes-guide-to-amass-how-to-use-amass-more-effectively-for-bug-bounties-7c37570b83f7)
 - [https://medium.com/quiknapp/fuzz-faster-with-ffuf-c18c031fc480](https://medium.com/quiknapp/fuzz-faster-with-ffuf-c18c031fc480)
+- [https://github.com/ffuf/ffuf](https://github.com/ffuf/ffuf)
