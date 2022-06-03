@@ -11,6 +11,7 @@ nav:
     - Subdomain Enumeration: OSINT/subdomain-enumeration.md
   - Windows Exploitation:
     - Crdential Dumping: windowsexploitation/credential-dumping.md
+    - Kerberos: windowsexploitation/kerberos.md
     - Lateral Movement: windowsexploitation/lateral-movement.md
     - Persistence: windowsexploitation/persistence.md
     - Privilege Escalation: windowsexploitation/privilege-escalation.md
