@@ -9,6 +9,8 @@ nav:
   - Home: index.md
   - OSINT:
     - Subdomain Enumeration: OSINT/subdomain-enumeration.md
+  - Web App Testing:
+    - Chrome DevTools: web-app/chrome-dev-tools.md
   - Windows Exploitation:
     - Crdential Dumping: windowsexploitation/credential-dumping.md
     - Kerberos: windowsexploitation/kerberos.md
