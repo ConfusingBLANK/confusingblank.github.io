@@ -20,6 +20,7 @@ nav:
     - Lateral Movement: windowsexploitation/lateral-movement.md
     - Persistence: windowsexploitation/persistence.md
     - Privilege Escalation: windowsexploitation/privilege-escalation.md
+    - Bloodhound Cyphers: windowsexploitation/bloodhound-cyphers.md
   - Malware Dev:
     - Payload Testing Snippets: malwaredev/payload-testing.md
     - PE Format Essentials: malwaredev/pe-file-format.md
