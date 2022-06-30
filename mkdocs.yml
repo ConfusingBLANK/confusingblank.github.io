@@ -15,12 +15,12 @@ nav:
   - Web App Testing:
     - Chrome DevTools: web-app/chrome-dev-tools.md
   - Windows Exploitation:
+    - Bloodhound Cyphers: windowsexploitation/bloodhound-cyphers.md
     - Crdential Dumping: windowsexploitation/credential-dumping.md
     - Kerberos: windowsexploitation/kerberos.md
     - Lateral Movement: windowsexploitation/lateral-movement.md
     - Persistence: windowsexploitation/persistence.md
     - Privilege Escalation: windowsexploitation/privilege-escalation.md
-    - Bloodhound Cyphers: windowsexploitation/bloodhound-cyphers.md
   - Malware Dev:
     - Payload Testing Snippets: malwaredev/payload-testing.md
     - PE Format Essentials: malwaredev/pe-file-format.md
