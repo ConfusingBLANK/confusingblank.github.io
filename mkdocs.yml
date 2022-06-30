@@ -7,7 +7,7 @@ theme:
     primary: white
   features:
     - navigation.tabs
-    - navigation.top
+    - navigation.sections
 nav:
   - Home: index.md
   - OSINT:
