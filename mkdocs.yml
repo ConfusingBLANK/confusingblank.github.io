@@ -4,7 +4,9 @@ theme:
   name: material
   palette:
     scheme: slate
-    primary: grey
+    primary: white
+  features:
+    - navigation.tabs
 nav:
   - Home: index.md
   - OSINT:
